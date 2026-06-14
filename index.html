@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="only light">
+<title>Zahara Perfumes Árabes — Catálogo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vinho-1:#2B0608;
+    --vinho-2:#4A0E14;
+    --vinho-3:#3A0B11;
+    --ouro:#CBA135;
+    --ouro-claro:#E8C874;
+    --ouro-soft:rgba(203,161,53,.35);
+    --creme:#F0E6D2;
+    --creme-dim:rgba(240,230,210,.62);
+    --verde-wpp:#25D366;
+    --shadow:0 18px 50px -20px rgba(0,0,0,.7);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Jost',sans-serif;
+    color:var(--creme);
+    background:
+      radial-gradient(120% 90% at 50% -10%, #5C1119 0%, var(--vinho-2) 38%, var(--vinho-1) 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:120px;
+  }
+  ::selection{background:var(--ouro);color:var(--vinho-1)}
+
+  /* ---------- HEADER ---------- */
+  header{
+    text-align:center;
+    padding:38px 20px 24px;
+    position:relative;
+  }
+  .ornament{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    color:var(--ouro);opacity:.85;margin:0 auto 18px;max-width:340px;
+  }
+  .ornament .line{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--ouro),transparent)}
+  .ornament .dot{width:6px;height:6px;transform:rotate(45deg);background:var(--ouro)}
+  .brand{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:clamp(2.4rem,9vw,3.6rem);
+    line-height:1;
+    letter-spacing:.5px;
+    background:linear-gradient(180deg,var(--ouro-claro),var(--ouro) 55%,#9a7726);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .brand-sub{
+    font-weight:300;
+    letter-spacing:.42em;
+    font-size:.72rem;
+    text-transform:uppercase;
+    color:var(--creme-dim);
+    margin-top:10px;
+    padding-left:.42em;
+  }
+
+  /* ---------- TOGGLE VAREJO / ATACADO ---------- */
+  .mode-wrap{
+    max-width:420px;margin:30px auto 6px;padding:0 20px;
+  }
+  .mode{
+    display:grid;grid-template-columns:1fr 1fr;gap:6px;
+    background:rgba(0,0,0,.28);
+    border:1px solid var(--ouro-soft);
+    border-radius:60px;padding:6px;position:relative;
+  }
+  .mode button{
+    font-family:'Jost';cursor:pointer;border:none;background:transparent;
+    color:var(--creme-dim);padding:13px 8px;border-radius:50px;
+    font-size:.96rem;font-weight:500;letter-spacing:.04em;
+    transition:color .3s;z-index:2;position:relative;
+  }
+  .mode button .tag{display:block;font-size:.62rem;font-weight:300;letter-spacing:.12em;opacity:.8;margin-top:2px;text-transform:uppercase}
+  .mode .glider{
+    position:absolute;top:6px;left:6px;height:calc(100% - 12px);width:calc(50% - 6px);
+    background:linear-gradient(180deg,var(--ouro-claro),var(--ouro));
+    border-radius:50px;transition:transform .35s cubic-bezier(.4,0,.2,1);
+    box-shadow:0 6px 16px -6px var(--ouro);z-index:1;
+  }
+  .mode.atacado .glider{transform:translateX(calc(100% + 6px))}
+  .mode button.active{color:var(--vinho-1);font-weight:600}
+  .mode-note{
+    text-align:center;font-size:.74rem;color:var(--creme-dim);
+    margin-top:12px;letter-spacing:.03em;min-height:18px;
+  }
+  .mode-note b{color:var(--ouro-claro);font-weight:500}
+
+  /* ---------- BUSCA + MARCAS ---------- */
+  .controls{max-width:1080px;margin:22px auto 0;padding:0 20px}
+  .search{position:relative;max-width:540px;margin:0 auto}
+  .search svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--ouro);opacity:.7}
+  .search input{
+    width:100%;font-family:'Jost';font-size:1rem;color:var(--creme);
+    background:rgba(0,0,0,.25);border:1px solid var(--ouro-soft);
+    border-radius:50px;padding:15px 20px 15px 48px;outline:none;transition:border-color .25s,box-shadow .25s;
+  }
+  .search input::placeholder{color:var(--creme-dim)}
+  .search input:focus{border-color:var(--ouro);box-shadow:0 0 0 3px rgba(203,161,53,.15)}
+
+  .brands{
+    display:flex;gap:9px;flex-wrap:wrap;justify-content:center;
+    margin-top:20px;
+  }
+  .chip{
+    font-family:'Jost';cursor:pointer;font-size:.84rem;letter-spacing:.03em;
+    background:transparent;color:var(--creme-dim);
+    border:1px solid var(--ouro-soft);border-radius:50px;padding:8px 16px;
+    transition:all .22s;white-space:nowrap;
+  }
+  .chip:hover{color:var(--creme);border-color:var(--ouro)}
+  .chip.active{
+    background:linear-gradient(180deg,var(--ouro-claro),var(--ouro));
+    color:var(--vinho-1);border-color:transparent;font-weight:600;
+    box-shadow:0 6px 14px -6px var(--ouro);
+  }
+
+  /* ---------- GRID PRODUTOS ---------- */
+  .count{text-align:center;font-size:.78rem;color:var(--creme-dim);letter-spacing:.08em;margin:26px 0 4px;text-transform:uppercase}
+  .grid{
+    max-width:1080px;margin:14px auto 0;padding:0 20px;
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;
+  }
+  .card{
+    background:linear-gradient(180deg,rgba(92,17,25,.55),var(--vinho-3));
+    border:1px solid var(--ouro-soft);border-radius:18px;overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s;
+    position:relative;
+  }
+  .card:hover{transform:translateY(-4px);border-color:var(--ouro);box-shadow:var(--shadow)}
+  .thumb{
+    aspect-ratio:1/1;position:relative;overflow:hidden;
+    background:radial-gradient(circle at 50% 35%,#5C1119,#2B0608);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .thumb img{width:100%;height:100%;object-fit:cover}
+  .thumb .ph{
+    font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;
+    color:var(--ouro);opacity:.55;
+  }
+  .thumb .ph small{display:block;font-family:'Jost';font-size:.5rem;letter-spacing:.3em;opacity:.7;margin-top:-4px;text-transform:uppercase}
+  .badge{
+    position:absolute;top:10px;left:10px;font-size:.6rem;letter-spacing:.14em;
+    text-transform:uppercase;background:rgba(0,0,0,.5);color:var(--ouro-claro);
+    padding:5px 10px;border-radius:50px;border:1px solid var(--ouro-soft);backdrop-filter:blur(4px);
+  }
+  .info{padding:15px 15px 16px;display:flex;flex-direction:column;flex:1}
+  .p-brand{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ouro);margin-bottom:4px}
+  .p-name{font-family:'Cormorant Garamond',serif;font-size:1.34rem;font-weight:600;line-height:1.1;color:var(--creme)}
+  .p-notes{font-size:.76rem;color:var(--creme-dim);margin-top:6px;line-height:1.45;flex:1}
+  .p-size{font-size:.7rem;color:var(--creme-dim);margin-top:8px;letter-spacing:.05em}
+  .price-row{display:flex;align-items:baseline;justify-content:space-between;margin-top:12px;gap:8px}
+  .price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--ouro-claro);white-space:nowrap}
+  .price small{font-size:.7rem;font-weight:400;color:var(--creme-dim);font-family:'Jost'}
+  .price .old{display:block;font-size:.72rem;color:var(--creme-dim);text-decoration:line-through;font-family:'Jost';font-weight:400}
+  .add{
+    margin-top:14px;font-family:'Jost';cursor:pointer;width:100%;
+    background:linear-gradient(180deg,var(--ouro-claro),var(--ouro));color:var(--vinho-1);
+    border:none;border-radius:50px;padding:11px;font-weight:600;font-size:.86rem;letter-spacing:.04em;
+    transition:filter .2s,transform .1s;
+  }
+  .add:hover{filter:brightness(1.08)}
+  .add:active{transform:scale(.97)}
+  .add.in{background:rgba(0,0,0,.3);color:var(--ouro-claro);border:1px solid var(--ouro)}
+
+  .empty{text-align:center;color:var(--creme-dim);padding:60px 20px;font-size:1rem;grid-column:1/-1}
+  .empty span{font-family:'Cormorant Garamond',serif;font-size:1.4rem;display:block;color:var(--ouro);margin-bottom:6px}
+
+  /* ---------- CARRINHO ---------- */
+  .cart-fab{
+    position:fixed;bottom:22px;right:22px;z-index:40;
+    background:linear-gradient(180deg,var(--ouro-claro),var(--ouro));color:var(--vinho-1);
+    border:none;cursor:pointer;border-radius:50px;padding:14px 22px;font-family:'Jost';
+    font-weight:600;font-size:.92rem;letter-spacing:.03em;display:flex;align-items:center;gap:10px;
+    box-shadow:0 14px 34px -10px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.1) inset;
+    transition:transform .2s,opacity .2s;
+  }
+  .cart-fab:active{transform:scale(.96)}
+  .cart-fab .qty{background:var(--vinho-1);color:var(--ouro-claro);min-width:24px;height:24px;border-radius:50px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:600;padding:0 6px}
+  .cart-fab.hidden{opacity:0;pointer-events:none;transform:translateY(20px)}
+
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);z-index:50;opacity:0;pointer-events:none;transition:opacity .3s}
+  .overlay.open{opacity:1;pointer-events:auto}
+  .drawer{
+    position:fixed;top:0;right:0;height:100%;width:min(420px,100%);z-index:60;
+    background:linear-gradient(180deg,var(--vinho-2),var(--vinho-1));
+    border-left:1px solid var(--ouro-soft);
+    transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+    display:flex;flex-direction:column;
+  }
+  .drawer.open{transform:translateX(0)}
+  .drawer-head{padding:22px 22px 16px;border-bottom:1px solid var(--ouro-soft);display:flex;align-items:center;justify-content:space-between}
+  .drawer-head h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.6rem;color:var(--creme)}
+  .drawer-head .x{background:none;border:none;color:var(--creme-dim);font-size:1.6rem;cursor:pointer;line-height:1;padding:4px}
+  .drawer-mode{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ouro);margin-top:2px}
+  .cart-items{flex:1;overflow-y:auto;padding:8px 22px}
+  .ci{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid rgba(203,161,53,.15)}
+  .ci-thumb{width:54px;height:54px;border-radius:12px;flex-shrink:0;background:radial-gradient(circle,#5C1119,#2B0608);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;color:var(--ouro);font-weight:700;overflow:hidden}
+  .ci-thumb img{width:100%;height:100%;object-fit:cover}
+  .ci-info{flex:1;min-width:0}
+  .ci-brand{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ouro)}
+  .ci-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--creme);line-height:1.1;margin-top:1px}
+  .ci-price{font-size:.82rem;color:var(--ouro-claro);margin-top:3px}
+  .ci-ctrl{display:flex;align-items:center;gap:8px;margin-top:8px}
+  .ci-ctrl button{width:26px;height:26px;border-radius:8px;border:1px solid var(--ouro-soft);background:rgba(0,0,0,.2);color:var(--creme);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+  .ci-ctrl button:hover{border-color:var(--ouro)}
+  .ci-ctrl span{min-width:22px;text-align:center;font-size:.9rem}
+  .ci-rm{margin-left:auto;background:none;border:none;color:var(--creme-dim);font-size:.72rem;cursor:pointer;text-decoration:underline;letter-spacing:.03em}
+  .cart-empty{text-align:center;color:var(--creme-dim);padding:50px 20px;font-size:.92rem}
+  .cart-empty span{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--ouro);display:block;margin-bottom:8px}
+
+  .drawer-foot{padding:18px 22px 24px;border-top:1px solid var(--ouro-soft)}
+  .warn{background:rgba(203,161,53,.12);border:1px solid var(--ouro-soft);border-radius:12px;padding:10px 14px;font-size:.78rem;color:var(--ouro-claro);margin-bottom:14px;line-height:1.4}
+  .totals{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+  .totals .lbl{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--creme-dim)}
+  .totals .val{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--ouro-claro)}
+  .checkout{
+    width:100%;font-family:'Jost';font-weight:600;font-size:1rem;cursor:pointer;
+    background:var(--verde-wpp);color:#053b1a;border:none;border-radius:50px;padding:15px;
+    display:flex;align-items:center;justify-content:center;gap:10px;letter-spacing:.02em;
+    transition:filter .2s,transform .1s;
+  }
+  .checkout:hover{filter:brightness(1.05)}
+  .checkout:active{transform:scale(.98)}
+  .checkout:disabled{background:rgba(255,255,255,.12);color:var(--creme-dim);cursor:not-allowed}
+
+  footer{text-align:center;padding:30px 20px 10px;color:var(--creme-dim);font-size:.76rem;letter-spacing:.05em}
+  footer a{color:var(--ouro);text-decoration:none}
+
+  @media (max-width:520px){
+    .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+    .info{padding:12px}
+    .p-name{font-size:1.15rem}
+    .price{font-size:1.3rem}
+    .add{padding:10px;font-size:.78rem}
+    .cart-fab{padding:13px 18px;font-size:.86rem}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="ornament"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+  <h1 class="brand">Zahara</h1>
+  <div class="brand-sub">Perfumes Árabes</div>
+</header>
+
+<div class="mode-wrap">
+  <div class="mode" id="mode">
+    <div class="glider"></div>
+    <button class="active" data-mode="varejo">Varejo<span class="tag">unidade</span></button>
+    <button data-mode="atacado">Atacado<span class="tag">a partir de 4 un.</span></button>
+  </div>
+  <div class="mode-note" id="modeNote">Preço unitário para compras avulsas.</div>
+</div>
+
+<div class="controls">
+  <div class="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input id="search" type="text" placeholder="Buscar por marca ou perfume…" autocomplete="off">
+  </div>
+  <div class="brands" id="brands"></div>
+</div>
+
+<div class="count" id="count"></div>
+<main class="grid" id="grid"></main>
+
+<footer>
+  Zahara Perfumes Árabes · Campo Grande/MS · <a href="https://instagram.com/zahara.cg" target="_blank" rel="noopener">@zahara.cg</a><br>
+  Originais e inspirados · Pronta entrega
+</footer>
+
+<!-- CARRINHO -->
+<button class="cart-fab hidden" id="cartFab">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+  <span>Meu pedido</span><span class="qty" id="fabQty">0</span>
+</button>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <div>
+      <h2>Meu pedido</h2>
+      <div class="drawer-mode" id="drawerMode">Varejo</div>
+    </div>
+    <button class="x" id="closeCart">×</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="warn" id="warn" style="display:none"></div>
+    <div class="totals"><span class="lbl">Total estimado</span><span class="val" id="total">R$ 0</span></div>
+    <button class="checkout" id="checkout">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.2 1.3-1.7 1.3-.4 0-1 .1-1.6-.1-1.6-.6-3.7-2.5-4.9-4.5-.3-.5-.8-1.4-.8-2.6 0-1.2.6-1.8.9-2 .2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.7 1.7c0 .2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.5.9 1 1.4 1.8 1.9.3.2.5.2.7-.1l.5-.6c.2-.2.3-.2.6-.1l1.6.8c.2.1.4.2.5.3 0 .2 0 .9-.3 1.5z"/></svg>
+      Finalizar no WhatsApp
+    </button>
+  </div>
+</aside>
+
+<script>
+/* =========================================================================
+   LISTAGEM DE PRODUTOS  ▸  edite/cole os perfumes aqui
+   ─────────────────────────────────────────────────────────────────────────
+   Campos:
+     brand   → marca (vira filtro automaticamente)
+     name    → nome do perfume
+     size    → tamanho, ex: "100ml"  (opcional)
+     notes   → notas/descrição curta (opcional)
+     varejo  → preço unidade avulsa (número)
+     atacado → preço por unidade a partir de 4 un. (número)
+     img     → URL da foto (opcional; sem foto mostra a inicial da marca)
+   ========================================================================= */
+const PRODUTOS = [
+  { brand:"Lattafa", name:"Khamrah", size:"100ml", notes:"Canela, baunilha e âmbar — doce e marcante.", varejo:190, atacado:155 },
+  { brand:"Lattafa", name:"Yara", size:"100ml", notes:"Orquídea, heliotrópio e baunilha. Feminino.", varejo:170, atacado:140 },
+  { brand:"Lattafa", name:"Asad", size:"100ml", notes:"Café, bergamota e baunilha. Amadeirado intenso.", varejo:180, atacado:148 },
+  { brand:"Maison Alhambra", name:"Jean Lowe Ombre", size:"100ml", notes:"Inspirado no Côte d'Azur. Frutado amadeirado.", varejo:175, atacado:142 },
+  { brand:"Maison Alhambra", name:"Salvouge", size:"100ml", notes:"Aromático fresco. Pimenta e âmbar.", varejo:165, atacado:135 },
+  { brand:"Armaf", name:"Club de Nuit Intense", size:"105ml", notes:"Abacaxi, limão e almíscar. Best-seller.", varejo:230, atacado:190 },
+  { brand:"Rasasi", name:"Hawas for Him", size:"100ml", notes:"Aquático cítrico. Versátil e elegante.", varejo:240, atacado:198 },
+  { brand:"Al Wataniah", name:"Khusoosi", size:"100ml", notes:"Oud, açafrão e couro. Sofisticado.", varejo:185, atacado:150 },
+];
+
+/* WhatsApp da loja (DDI+DDD+número, só dígitos) */
+const WHATSAPP = "5567992890249";
+/* Mínimo de unidades para preço de atacado */
+const MIN_ATACADO = 4;
+/* ========================================================================= */
+
+let mode = "varejo";
+let activeBrand = "Todas";
+let query = "";
+const cart = {}; // key -> {prod, qty}
+
+const fmt = n => "R$ " + n.toLocaleString("pt-BR",{minimumFractionDigits:0,maximumFractionDigits:2});
+const key = p => (p.brand+"|"+p.name).toLowerCase();
+const price = p => mode==="atacado" ? p.atacado : p.varejo;
+
+/* ---------- MARCAS ---------- */
+function brandList(){
+  const set = [...new Set(PRODUTOS.map(p=>p.brand))].sort((a,b)=>a.localeCompare(b,"pt-BR"));
+  return ["Todas",...set];
+}
+function renderBrands(){
+  const el = document.getElementById("brands");
+  el.innerHTML = brandList().map(b =>
+    `<button class="chip ${b===activeBrand?'active':''}" data-brand="${b}">${b}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{activeBrand=c.dataset.brand;renderBrands();renderGrid();});
+}
+
+/* ---------- GRID ---------- */
+function filtered(){
+  return PRODUTOS.filter(p=>{
+    const okBrand = activeBrand==="Todas" || p.brand===activeBrand;
+    const q = query.trim().toLowerCase();
+    const okQuery = !q || (p.brand+" "+p.name+" "+(p.notes||"")).toLowerCase().includes(q);
+    return okBrand && okQuery;
+  });
+}
+function renderGrid(){
+  const list = filtered();
+  document.getElementById("count").textContent =
+    list.length ? `${list.length} ${list.length>1?'perfumes':'perfume'}` : "";
+  const grid = document.getElementById("grid");
+  if(!list.length){
+    grid.innerHTML = `<div class="empty"><span>Nada encontrado</span>Tente outra marca ou termo de busca.</div>`;
+    return;
+  }
+  grid.innerHTML = list.map(p=>{
+    const k = key(p);
+    const inCart = cart[k];
+    const showOld = mode==="atacado" && p.varejo>p.atacado;
+    const thumb = p.img
+      ? `<img src="${p.img}" alt="${p.name}" loading="lazy">`
+      : `<div class="ph">${p.brand[0]}<small>${p.brand}</small></div>`;
+    return `
+    <article class="card">
+      <div class="thumb">
+        ${thumb}
+        ${mode==="atacado"?'<span class="badge">Atacado</span>':''}
+      </div>
+      <div class="info">
+        <div class="p-brand">${p.brand}</div>
+        <div class="p-name">${p.name}</div>
+        ${p.notes?`<div class="p-notes">${p.notes}</div>`:'<div class="p-notes"></div>'}
+        ${p.size?`<div class="p-size">${p.size}</div>`:''}
+        <div class="price-row">
+          <div class="price">
+            ${showOld?`<span class="old">${fmt(p.varejo)}</span>`:''}
+            ${fmt(price(p))} <small>/un.</small>
+          </div>
+        </div>
+        <button class="add ${inCart?'in':''}" data-key="${k}">
+          ${inCart?`No pedido (${inCart.qty})`:'Adicionar'}
+        </button>
+      </div>
+    </article>`;
+  }).join("");
+  grid.querySelectorAll(".add").forEach(b=>b.onclick=()=>addToCart(b.dataset.key));
+}
+
+/* ---------- CARRINHO ---------- */
+function addToCart(k){
+  const p = PRODUTOS.find(x=>key(x)===k);
+  if(!p) return;
+  if(cart[k]) cart[k].qty++; else cart[k]={prod:p,qty:1};
+  syncCart(); renderGrid();
+}
+function changeQty(k,d){
+  if(!cart[k]) return;
+  cart[k].qty += d;
+  if(cart[k].qty<=0) delete cart[k];
+  syncCart(); renderGrid();
+}
+function removeItem(k){ delete cart[k]; syncCart(); renderGrid(); }
+
+function totalQty(){ return Object.values(cart).reduce((s,i)=>s+i.qty,0); }
+function totalValue(){ return Object.values(cart).reduce((s,i)=>s+price(i.prod)*i.qty,0); }
+
+function syncCart(){
+  const qty = totalQty();
+  document.getElementById("fabQty").textContent = qty;
+  document.getElementById("cartFab").classList.toggle("hidden", qty===0 && !drawerOpen);
+  document.getElementById("drawerMode").textContent = mode==="atacado"?"Atacado":"Varejo";
+
+  const wrap = document.getElementById("cartItems");
+  const items = Object.entries(cart);
+  if(!items.length){
+    wrap.innerHTML = `<div class="cart-empty"><span>Pedido vazio</span>Adicione perfumes para montar seu pedido.</div>`;
+  } else {
+    wrap.innerHTML = items.map(([k,it])=>{
+      const p = it.prod;
+      const thumb = p.img?`<img src="${p.img}" alt="">`:p.brand[0];
+      return `
+      <div class="ci">
+        <div class="ci-thumb">${thumb}</div>
+        <div class="ci-info">
+          <div class="ci-brand">${p.brand}</div>
+          <div class="ci-name">${p.name}</div>
+          <div class="ci-price">${fmt(price(p))} <span style="opacity:.6">× ${it.qty} = ${fmt(price(p)*it.qty)}</span></div>
+          <div class="ci-ctrl">
+            <button data-k="${k}" data-d="-1">−</button>
+            <span>${it.qty}</span>
+            <button data-k="${k}" data-d="1">+</button>
+            <button class="ci-rm" data-rm="${k}">remover</button>
+          </div>
+        </div>
+      </div>`;
+    }).join("");
+    wrap.querySelectorAll(".ci-ctrl button[data-d]").forEach(b=>b.onclick=()=>changeQty(b.dataset.k,+b.dataset.d));
+    wrap.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>removeItem(b.dataset.rm));
+  }
+
+  document.getElementById("total").textContent = fmt(totalValue());
+
+  // aviso de mínimo no atacado
+  const warn = document.getElementById("warn");
+  const checkout = document.getElementById("checkout");
+  if(mode==="atacado" && qty>0 && qty<MIN_ATACADO){
+    warn.style.display="block";
+    warn.innerHTML = `Faltam <b>${MIN_ATACADO-qty}</b> un. para o preço de atacado (mínimo ${MIN_ATACADO} unidades no total).`;
+    checkout.disabled = true;
+  } else {
+    warn.style.display="none";
+    checkout.disabled = qty===0;
+  }
+}
+
+/* ---------- ABRIR/FECHAR DRAWER ---------- */
+let drawerOpen=false;
+function openCart(){drawerOpen=true;document.getElementById("drawer").classList.add("open");document.getElementById("overlay").classList.add("open");syncCart();}
+function closeCart(){drawerOpen=false;document.getElementById("drawer").classList.remove("open");document.getElementById("overlay").classList.remove("open");syncCart();}
+document.getElementById("cartFab").onclick=openCart;
+document.getElementById("closeCart").onclick=closeCart;
+document.getElementById("overlay").onclick=closeCart;
+
+/* ---------- CHECKOUT WHATSAPP ---------- */
+document.getElementById("checkout").onclick=()=>{
+  const items = Object.values(cart);
+  if(!items.length) return;
+  let msg = `*Pedido — Zahara Perfumes Árabes*%0A_Modalidade: ${mode==="atacado"?"Atacado":"Varejo"}_%0A%0A`;
+  items.forEach(it=>{
+    const p=it.prod;
+    msg += `• ${p.brand} — ${p.name}${p.size?` (${p.size})`:''}%0A   ${it.qty} un × ${fmt(price(p))} = ${fmt(price(p)*it.qty)}%0A`;
+  });
+  msg += `%0A*Total: ${fmt(totalValue())}*%0A(${totalQty()} unidades)%0A%0AGostaria de fechar este pedido.`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,"_blank");
+};
+
+/* ---------- MODO VAREJO/ATACADO ---------- */
+document.getElementById("mode").querySelectorAll("button").forEach(btn=>{
+  btn.onclick=()=>{
+    mode = btn.dataset.mode;
+    const m = document.getElementById("mode");
+    m.classList.toggle("atacado", mode==="atacado");
+    m.querySelectorAll("button").forEach(b=>b.classList.toggle("active",b===btn));
+    document.getElementById("modeNote").innerHTML = mode==="atacado"
+      ? `Preço especial de atacado a partir de <b>${MIN_ATACADO} unidades</b> no total do pedido.`
+      : `Preço unitário para compras avulsas.`;
+    renderGrid(); syncCart();
+  };
+});
+
+/* ---------- BUSCA ---------- */
+document.getElementById("search").oninput=e=>{query=e.target.value;renderGrid();};
+
+/* ---------- INIT ---------- */
+renderBrands();
+renderGrid();
+syncCart();
+</script>
+</body>
+</html>
