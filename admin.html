@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="only light">
+<title>Zahara — Painel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--vinho-1:#2B0608;--vinho-2:#4A0E14;--vinho-3:#3A0B11;--ouro:#CBA135;--ouro-claro:#E8C874;--ouro-soft:rgba(203,161,53,.35);--creme:#F0E6D2;--creme-dim:rgba(240,230,210,.6);--erro:#E8736B;--ok:#5BBF8A}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Jost',sans-serif;color:var(--creme);background:radial-gradient(120% 90% at 50% -10%,#5C1119,var(--vinho-2) 40%,var(--vinho-1));background-attachment:fixed;min-height:100vh;-webkit-font-smoothing:antialiased}
+  .brand{font-family:'Cormorant Garamond',serif;font-weight:600;background:linear-gradient(180deg,var(--ouro-claro),var(--ouro) 55%,#9a7726);-webkit-background-clip:text;background-clip:text;color:transparent}
+  input,textarea,button,select{font-family:'Jost'}
+  /* LOGIN */
+  .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .login{width:100%;max-width:380px;background:linear-gradient(180deg,rgba(92,17,25,.5),var(--vinho-3));border:1px solid var(--ouro-soft);border-radius:22px;padding:34px 28px;text-align:center;box-shadow:0 20px 60px -20px rgba(0,0,0,.7)}
+  .login .brand{font-size:2.6rem;line-height:1}
+  .login .sub{letter-spacing:.4em;font-size:.62rem;text-transform:uppercase;color:var(--creme-dim);margin:6px 0 26px;padding-left:.4em}
+  .field{text-align:left;margin-bottom:14px}
+  .field label{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ouro);margin-bottom:6px}
+  .field input{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--ouro-soft);border-radius:12px;padding:13px 14px;color:var(--creme);font-size:.96rem;outline:none;transition:border-color .2s,box-shadow .2s}
+  .field input:focus{border-color:var(--ouro);box-shadow:0 0 0 3px rgba(203,161,53,.15)}
+  .btn{cursor:pointer;border:none;border-radius:50px;font-weight:600;letter-spacing:.03em;transition:filter .2s,transform .1s}
+  .btn:active{transform:scale(.98)}
+  .btn-ouro{background:linear-gradient(180deg,var(--ouro-claro),var(--ouro));color:var(--vinho-1)}
+  .btn-ouro:hover{filter:brightness(1.07)}
+  .login .btn{width:100%;padding:14px;font-size:1rem;margin-top:6px}
+  .msg{font-size:.82rem;margin-top:14px;min-height:18px}
+  .msg.erro{color:var(--erro)}.msg.ok{color:var(--ok)}
+  /* APP */
+  .app{display:none;max-width:920px;margin:0 auto;padding:20px 18px 60px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 0 18px;border-bottom:1px solid var(--ouro-soft);margin-bottom:20px;gap:12px;flex-wrap:wrap}
+  .topbar .brand{font-size:1.9rem}
+  .topbar .sub{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--creme-dim);margin-top:-4px}
+  .topbar .right{display:flex;gap:10px;align-items:center}
+  .btn-ghost{background:transparent;border:1px solid var(--ouro-soft);color:var(--creme);padding:9px 16px;font-size:.84rem;border-radius:50px;cursor:pointer}
+  .btn-ghost:hover{border-color:var(--ouro)}
+  .toolbar{display:flex;gap:12px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+  .toolbar input{flex:1;min-width:160px;background:rgba(0,0,0,.25);border:1px solid var(--ouro-soft);border-radius:50px;padding:12px 18px;color:var(--creme);outline:none}
+  .toolbar input:focus{border-color:var(--ouro)}
+  .btn-novo{padding:12px 20px;font-size:.9rem;display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .stat{font-size:.74rem;color:var(--creme-dim);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+  /* LISTA */
+  .row{display:flex;gap:14px;align-items:center;background:linear-gradient(180deg,rgba(92,17,25,.4),var(--vinho-3));border:1px solid var(--ouro-soft);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+  .row .rthumb{width:52px;height:52px;border-radius:10px;flex-shrink:0;background:radial-gradient(circle,#5C1119,#2B0608);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;color:var(--ouro);font-weight:700;overflow:hidden}
+  .row .rthumb img{width:100%;height:100%;object-fit:cover}
+  .row .rinfo{flex:1;min-width:0}
+  .row .rbrand{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ouro)}
+  .row .rname{font-family:'Cormorant Garamond',serif;font-size:1.16rem;color:var(--creme);line-height:1.15}
+  .row .rprice{font-size:.78rem;color:var(--creme-dim);margin-top:2px}
+  .row .rprice b{color:var(--ouro-claro);font-weight:500}
+  .row .ractions{display:flex;gap:6px;flex-shrink:0}
+  .icon{width:36px;height:36px;border-radius:9px;border:1px solid var(--ouro-soft);background:rgba(0,0,0,.2);color:var(--creme);cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .icon:hover{border-color:var(--ouro)}
+  .icon.off{opacity:.45}
+  .pill{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:50px;border:1px solid;display:inline-block;margin-top:4px}
+  .pill.on{color:var(--ok);border-color:rgba(91,191,138,.4)}
+  .pill.no{color:var(--erro);border-color:rgba(232,115,107,.4)}
+  .vazio{text-align:center;color:var(--creme-dim);padding:50px 20px}
+  .vazio span{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--ouro);display:block;margin-bottom:6px}
+  /* MODAL */
+  .ov{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(3px);z-index:50;display:none;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto}
+  .ov.open{display:flex}
+  .modal{width:100%;max-width:460px;background:linear-gradient(180deg,var(--vinho-2),var(--vinho-1));border:1px solid var(--ouro-soft);border-radius:20px;padding:24px;margin:auto}
+  .modal h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--creme);margin-bottom:18px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .field textarea{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--ouro-soft);border-radius:12px;padding:12px 14px;color:var(--creme);font-size:.94rem;outline:none;resize:vertical;min-height:64px}
+  .field textarea:focus{border-color:var(--ouro)}
+  .drop{border:1px dashed var(--ouro-soft);border-radius:12px;padding:14px;text-align:center;cursor:pointer;color:var(--creme-dim);font-size:.84rem;transition:border-color .2s}
+  .drop:hover{border-color:var(--ouro)}
+  .drop img{max-height:120px;border-radius:8px;margin:0 auto 8px;display:block}
+  .check{display:flex;align-items:center;gap:10px;margin-top:14px;cursor:pointer;font-size:.92rem}
+  .check input{width:18px;height:18px;accent-color:var(--ouro)}
+  .modal-foot{display:flex;gap:10px;margin-top:22px}
+  .modal-foot .btn{flex:1;padding:13px;font-size:.94rem}
+  @media (max-width:480px){.grid2{grid-template-columns:1fr}.row .rname{font-size:1.05rem}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login">
+    <div class="brand">Zahara</div>
+    <div class="sub">Painel · Acesso restrito</div>
+    <div class="field"><label>E-mail</label><input id="email" type="email" autocomplete="username" placeholder="seu@email.com"></div>
+    <div class="field"><label>Senha</label><input id="senha" type="password" autocomplete="current-password" placeholder="••••••••"></div>
+    <button class="btn btn-ouro" id="btnLogin">Entrar</button>
+    <div class="msg" id="loginMsg"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+  <div class="topbar">
+    <div><div class="brand">Zahara</div><div class="sub">Painel de perfumes</div></div>
+    <div class="right">
+      <button class="btn-ghost" id="btnSair">Sair</button>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <input id="busca" placeholder="Buscar perfume ou marca…">
+    <button class="btn btn-ouro btn-novo" id="btnNovo">＋ Novo perfume</button>
+  </div>
+  <div class="stat" id="stat"></div>
+  <div id="lista"></div>
+</div>
+
+<!-- MODAL CADASTRO/EDIÇÃO -->
+<div class="ov" id="ov">
+  <div class="modal">
+    <h3 id="modalTitle">Novo perfume</h3>
+    <div class="grid2">
+      <div class="field"><label>Marca</label><input id="f_marca" placeholder="Ex: Lattafa"></div>
+      <div class="field"><label>Nome</label><input id="f_nome" placeholder="Ex: Khamrah"></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label>Tamanho</label><input id="f_tamanho" placeholder="Ex: 100ml"></div>
+      <div class="field"><label>&nbsp;</label><div></div></div>
+    </div>
+    <div class="field"><label>Notas / descrição</label><textarea id="f_notas" placeholder="Ex: Canela, baunilha e âmbar."></textarea></div>
+    <div class="grid2">
+      <div class="field"><label>Preço varejo (R$)</label><input id="f_varejo" type="number" inputmode="decimal" step="0.01" placeholder="190"></div>
+      <div class="field"><label>Preço atacado (R$)</label><input id="f_atacado" type="number" inputmode="decimal" step="0.01" placeholder="155"></div>
+    </div>
+    <div class="field">
+      <label>Foto</label>
+      <div class="drop" id="drop"><div id="dropContent">Toque para escolher uma foto</div></div>
+      <input id="f_foto" type="file" accept="image/*" hidden>
+    </div>
+    <label class="check"><input type="checkbox" id="f_disp" checked> Disponível no catálogo</label>
+    <div class="msg" id="modalMsg"></div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" id="btnCancelar" style="border-radius:50px">Cancelar</button>
+      <button class="btn btn-ouro" id="btnSalvar">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const $ = id => document.getElementById(id);
+const fmt = n => "R$ " + Number(n||0).toLocaleString("pt-BR",{minimumFractionDigits:0,maximumFractionDigits:2});
+
+let PERFUMES = [];
+let editId = null;       // id em edição (null = novo)
+let fotoFile = null;     // arquivo selecionado
+let fotoAtual = "";      // url da foto já salva (em edição)
+
+/* ---------- AUTH ---------- */
+async function init(){
+  const { data:{ session } } = await sb.auth.getSession();
+  if(session) abrirApp(); else mostrarLogin();
+}
+function mostrarLogin(){ $("loginWrap").style.display="flex"; $("app").style.display="none"; }
+async function abrirApp(){ $("loginWrap").style.display="none"; $("app").style.display="block"; await carregar(); }
+
+$("btnLogin").onclick = async ()=>{
+  const email=$("email").value.trim(), password=$("senha").value;
+  const msg=$("loginMsg"); msg.className="msg"; msg.textContent="Entrando…";
+  const { error } = await sb.auth.signInWithPassword({ email, password });
+  if(error){ msg.className="msg erro"; msg.textContent="E-mail ou senha incorretos."; return; }
+  msg.textContent=""; abrirApp();
+};
+$("senha").addEventListener("keydown",e=>{ if(e.key==="Enter") $("btnLogin").click(); });
+$("btnSair").onclick = async ()=>{ await sb.auth.signOut(); mostrarLogin(); };
+
+/* ---------- LISTA ---------- */
+async function carregar(){
+  $("lista").innerHTML = `<div class="vazio">Carregando…</div>`;
+  const { data, error } = await sb.from("perfumes").select("*")
+    .order("marca",{ascending:true}).order("nome",{ascending:true});
+  if(error){ $("lista").innerHTML=`<div class="vazio"><span>Erro ao carregar</span>${error.message}</div>`; return; }
+  PERFUMES = data||[];
+  render();
+}
+function render(){
+  const q = $("busca").value.trim().toLowerCase();
+  const list = PERFUMES.filter(p=>!q || (p.marca+" "+p.nome).toLowerCase().includes(q));
+  $("stat").textContent = `${PERFUMES.length} perfumes cadastrados${q?` · ${list.length} no filtro`:''}`;
+  if(!list.length){ $("lista").innerHTML=`<div class="vazio"><span>Nenhum perfume</span>Clique em "Novo perfume" para começar.</div>`; return; }
+  $("lista").innerHTML = list.map(p=>{
+    const thumb = p.img_url?`<img src="${p.img_url}" alt="">`:(p.marca?.[0]||'Z');
+    return `<div class="row">
+      <div class="rthumb">${thumb}</div>
+      <div class="rinfo">
+        <div class="rbrand">${p.marca}</div>
+        <div class="rname">${p.nome}${p.tamanho?` · <span style="font-size:.8rem;color:var(--creme-dim)">${p.tamanho}</span>`:''}</div>
+        <div class="rprice">Varejo <b>${fmt(p.preco_varejo)}</b> · Atacado <b>${fmt(p.preco_atacado)}</b></div>
+        <span class="pill ${p.disponivel?'on':'no'}">${p.disponivel?'Disponível':'Oculto'}</span>
+      </div>
+      <div class="ractions">
+        <button class="icon ${p.disponivel?'':'off'}" title="Mostrar/ocultar" data-toggle="${p.id}">${p.disponivel?'👁':'🚫'}</button>
+        <button class="icon" title="Editar" data-edit="${p.id}">✎</button>
+        <button class="icon" title="Excluir" data-del="${p.id}">🗑</button>
+      </div>
+    </div>`;
+  }).join("");
+  $("lista").querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>abrirModal(b.dataset.edit));
+  $("lista").querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>excluir(b.dataset.del));
+  $("lista").querySelectorAll("[data-toggle]").forEach(b=>b.onclick=()=>toggle(b.dataset.toggle));
+}
+$("busca").oninput = render;
+
+/* ---------- MODAL ---------- */
+function abrirModal(id){
+  editId = id||null; fotoFile=null; fotoAtual="";
+  $("modalMsg").textContent=""; $("modalMsg").className="msg";
+  if(id){
+    const p = PERFUMES.find(x=>x.id===id);
+    $("modalTitle").textContent="Editar perfume";
+    $("f_marca").value=p.marca||""; $("f_nome").value=p.nome||""; $("f_tamanho").value=p.tamanho||"";
+    $("f_notas").value=p.notas||""; $("f_varejo").value=p.preco_varejo??""; $("f_atacado").value=p.preco_atacado??"";
+    $("f_disp").checked=!!p.disponivel; fotoAtual=p.img_url||"";
+    $("dropContent").innerHTML = fotoAtual?`<img src="${fotoAtual}"><div>Toque para trocar a foto</div>`:`Toque para escolher uma foto`;
+  } else {
+    $("modalTitle").textContent="Novo perfume";
+    ["f_marca","f_nome","f_tamanho","f_notas","f_varejo","f_atacado"].forEach(i=>$(i).value="");
+    $("f_disp").checked=true; $("dropContent").innerHTML=`Toque para escolher uma foto`;
+  }
+  $("ov").classList.add("open");
+}
+function fecharModal(){ $("ov").classList.remove("open"); }
+$("btnNovo").onclick=()=>abrirModal(null);
+$("btnCancelar").onclick=fecharModal;
+$("ov").onclick=e=>{ if(e.target===$("ov")) fecharModal(); };
+
+$("drop").onclick=()=>$("f_foto").click();
+$("f_foto").onchange=e=>{
+  const f=e.target.files[0]; if(!f) return; fotoFile=f;
+  const r=new FileReader(); r.onload=ev=>$("dropContent").innerHTML=`<img src="${ev.target.result}"><div>Toque para trocar a foto</div>`; r.readAsDataURL(f);
+};
+
+async function uploadFoto(){
+  if(!fotoFile) return fotoAtual; // mantém a atual se não trocou
+  const ext=(fotoFile.name.split(".").pop()||"jpg").toLowerCase();
+  const path=`${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
+  const { error } = await sb.storage.from("perfumes").upload(path, fotoFile, { upsert:false });
+  if(error) throw error;
+  const { data } = sb.storage.from("perfumes").getPublicUrl(path);
+  return data.publicUrl;
+}
+
+$("btnSalvar").onclick = async ()=>{
+  const marca=$("f_marca").value.trim(), nome=$("f_nome").value.trim();
+  const msg=$("modalMsg"); msg.className="msg";
+  if(!marca||!nome){ msg.className="msg erro"; msg.textContent="Preencha marca e nome."; return; }
+  $("btnSalvar").textContent="Salvando…"; $("btnSalvar").disabled=true;
+  try{
+    const img_url = await uploadFoto();
+    const payload = {
+      marca, nome,
+      tamanho:$("f_tamanho").value.trim()||null,
+      notas:$("f_notas").value.trim()||null,
+      preco_varejo:parseFloat($("f_varejo").value)||0,
+      preco_atacado:parseFloat($("f_atacado").value)||0,
+      img_url:img_url||null,
+      disponivel:$("f_disp").checked
+    };
+    let error;
+    if(editId){ ({ error } = await sb.from("perfumes").update(payload).eq("id",editId)); }
+    else { ({ error } = await sb.from("perfumes").insert(payload)); }
+    if(error) throw error;
+    fecharModal(); await carregar();
+  }catch(e){
+    msg.className="msg erro"; msg.textContent="Erro ao salvar: "+(e.message||e);
+  }finally{
+    $("btnSalvar").textContent="Salvar"; $("btnSalvar").disabled=false;
+  }
+};
+
+async function toggle(id){
+  const p=PERFUMES.find(x=>x.id===id); if(!p) return;
+  const { error } = await sb.from("perfumes").update({ disponivel: !p.disponivel }).eq("id",id);
+  if(!error) carregar();
+}
+async function excluir(id){
+  const p=PERFUMES.find(x=>x.id===id); if(!p) return;
+  if(!confirm(`Excluir "${p.marca} — ${p.nome}"? Esta ação não tem volta.`)) return;
+  const { error } = await sb.from("perfumes").delete().eq("id",id);
+  if(!error) carregar();
+}
+
+init();
+</script>
+</body>
+</html>
