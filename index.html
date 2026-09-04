@@ -292,6 +292,7 @@
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2200929484035544&ev=PageView&noscript=1"></noscript>
 
 <header>
   <div class="ornament"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
@@ -392,7 +393,7 @@
 /* ---- CONFIG DA LOJA ---- */
 const WHATSAPP = "5567992890249";
 const MIN_ATACADO = 4;
-const META_PIXEL_ID = "";   // cole aqui o ID do Pixel do Meta (só números). Vazio = pixel desligado.
+const META_PIXEL_ID = "2200929484035544";   // ID do Pixel do Meta. Vazio = pixel desligado.
 const SAUDACAO = "Olá! Vim pelo site da Zahara e quero saber mais sobre os perfumes.";
 
 /* ---- ORIGEM DO TRÁFEGO (UTM) ----
@@ -415,8 +416,10 @@ if(META_PIXEL_ID){
   s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', META_PIXEL_ID); fbq('track','PageView');
 }
-function track(ev,data){ if(window.fbq) try{ fbq('track',ev,data||{}); }catch(e){} }
-function trackCustom(ev,data){ if(window.fbq) try{ fbq('trackCustom',ev,data||{}); }catch(e){} }
+const evId = ()=>`z-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+function track(ev,data){ if(window.fbq) try{ fbq('track',ev,data||{},{eventID:evId()}); }catch(e){} }
+function trackCustom(ev,data){ if(window.fbq) try{ fbq('trackCustom',ev,data||{},{eventID:evId()}); }catch(e){} }
+function utmData(){ return Object.fromEntries(UTM); }
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -477,7 +480,7 @@ function brandList(){
 function renderBrands(){
   const el=document.getElementById("brands");
   el.innerHTML=brandList().map(b=>`<button class="chip ${b===activeBrand?'active':''}" data-brand="${b}">${b}</button>`).join("");
-  el.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{activeBrand=c.dataset.brand;renderBrands();renderGrid();});
+  el.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{activeBrand=c.dataset.brand;renderBrands();renderGrid();if(activeBrand!=="Todas")trackCustom("FiltroMarca",{marca:activeBrand});});
 }
 function filtered(){
   return PRODUTOS.filter(p=>{
@@ -514,10 +517,10 @@ function renderGrid(){
         :`<button class="add ${inCart?'in':''}" data-key="${k}">${inCart?`No pedido (${inCart.qty})`:'Adicionar'}</button>`}</div></article>`;
   }).join("");
   grid.querySelectorAll("button.add").forEach(b=>b.onclick=()=>addToCart(b.dataset.key));
-  grid.querySelectorAll("[data-avisar]").forEach(a=>a.onclick=()=>trackCustom("AvisarEstoque",{content_name:a.dataset.avisar}));
+  grid.querySelectorAll("[data-avisar]").forEach(a=>a.onclick=()=>{track("Contact",{content_name:"avisar_estoque"});trackCustom("AvisarEstoque",{content_name:a.dataset.avisar});});
 }
 function addToCart(k){const p=PRODUTOS.find(x=>key(x)===k);if(!p||p.soldOut)return;if(cart[k])cart[k].qty++;else cart[k]={prod:p,qty:1};
-  track("AddToCart",{content_name:`${p.brand} ${p.name}`,content_type:"product",value:price(p),currency:"BRL"});syncCart();renderGrid();}
+  track("AddToCart",{content_ids:[k],content_name:`${p.brand} ${p.name}`,content_type:"product",value:price(p),currency:"BRL",...utmData()});syncCart();renderGrid();}
 function changeQty(k,d){if(!cart[k])return;cart[k].qty+=d;if(cart[k].qty<=0)delete cart[k];syncCart();renderGrid();}
 function removeItem(k){delete cart[k];syncCart();renderGrid();}
 function totalQty(){return Object.values(cart).reduce((s,i)=>s+i.qty,0);}
@@ -557,8 +560,11 @@ document.getElementById("checkout").onclick=()=>{
     if(p.usage) msg+=`   Uso: ${p.usage}%0A`;
   });
   msg+=`%0A*Total: ${fmt(totalValue())}*%0A(${totalQty()} unidades)%0A%0AGostaria de fechar este pedido.`;
-  track("Contact",{content_name:"pedido_whatsapp",value:totalValue(),currency:"BRL",num_items:totalQty()});
-  trackCustom("PedidoWhatsApp",{modalidade:mode,itens:totalQty(),valor:totalValue()});
+  const contents=items.map(it=>({id:key(it.prod),quantity:it.qty,item_price:price(it.prod)}));
+  const nomes=items.map(it=>`${it.prod.brand} ${it.prod.name}`).join(", ");
+  track("Lead",{content_name:"pedido_whatsapp",content_type:"product",contents,value:totalValue(),currency:"BRL",num_items:totalQty(),...utmData()});
+  track("Contact",{content_name:"pedido_whatsapp",value:totalValue(),currency:"BRL"});
+  trackCustom("PedidoWhatsApp",{modalidade:mode,itens:totalQty(),valor:totalValue(),produtos:nomes,...utmData()});
   window.open(waLink(msg),"_blank");
 };
 
@@ -568,7 +574,7 @@ document.getElementById("checkout").onclick=()=>{
   ["heroWpp","footWpp","wppFab"].forEach(id=>{
     const a=document.getElementById(id); if(!a) return;
     a.href=href;
-    a.addEventListener("click",()=>{track("Contact",{content_name:id});trackCustom("CliqueWhatsApp",{origem:id});});
+    a.addEventListener("click",()=>{track("Contact",{content_name:id,...utmData()});trackCustom("CliqueWhatsApp",{origem:id,...utmData()});});
   });
 })();
 
@@ -581,15 +587,19 @@ function aplicarDeepLink(){
   if(cat){ const c=categoryList().find(x=>x.toLowerCase()===cat.toLowerCase()); if(c && !document.getElementById("categories").hidden){activeCategory=c;renderCategories();} }
   if(q){ query=q; document.getElementById("search").value=q; }
   if(q||marca||cat){ renderGrid(); document.getElementById("catalogo").scrollIntoView({behavior:"smooth",block:"start"}); }
+  // Anúncio de produto (?q=...) que abre com poucos resultados = visualização de produto
+  if(q){ const l=filtered(); if(l.length && l.length<=3) track("ViewContent",{content_type:"product",content_ids:l.map(key),content_name:l.map(p=>`${p.brand} ${p.name}`).join(", "),value:price(l[0]),currency:"BRL",...utmData()}); }
 }
 document.getElementById("mode").querySelectorAll("button").forEach(btn=>{
-  btn.onclick=()=>{mode=btn.dataset.mode;const m=document.getElementById("mode");
+  btn.onclick=()=>{mode=btn.dataset.mode;const m=document.getElementById("mode");trackCustom(mode==="atacado"?"ModoAtacado":"ModoVarejo",{});
     m.classList.toggle("atacado",mode==="atacado");
     m.querySelectorAll("button").forEach(b=>b.classList.toggle("active",b===btn));
     document.getElementById("modeNote").innerHTML=mode==="atacado"?`Preço especial de atacado a partir de <b>${MIN_ATACADO} unidades</b> no total do pedido.`:`Preço unitário para compras avulsas.`;
     renderGrid();syncCart();};
 });
-document.getElementById("search").oninput=e=>{query=e.target.value;renderGrid();};
+let searchT=null;
+document.getElementById("search").oninput=e=>{query=e.target.value;renderGrid();
+  clearTimeout(searchT); const q=query.trim(); if(q.length>=3) searchT=setTimeout(()=>track("Search",{search_string:q,content_category:mode}),900);};
 carregar();
 </script>
 </body>
