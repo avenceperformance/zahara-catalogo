@@ -4,7 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="only light">
-<title>Zahara Perfumes Árabes — Catálogo</title>
+<meta name="theme-color" content="#4D0710">
+<title>Zahara Perfumes Árabes | Originais com entrega hoje em Campo Grande MS</title>
+<meta name="description" content="Perfumes árabes originais (Lattafa, Armaf, Maison Alhambra e mais) com entrega no mesmo dia em Campo Grande/MS. Varejo e atacado a partir de 4 unidades. Peça pelo WhatsApp.">
+<link rel="canonical" href="https://www.zaharacg.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zahara Perfumes Árabes">
+<meta property="og:title" content="Zahara Perfumes Árabes — entrega hoje em Campo Grande">
+<meta property="og:description" content="Perfumes árabes originais à pronta entrega em Campo Grande/MS. Escolha no catálogo e finalize pelo WhatsApp.">
+<meta property="og:url" content="https://www.zaharacg.com.br/">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234D0710'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-weight='700' fill='%23E8C874'%3EZ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://yirdasbxwnbstgpzkuts.supabase.co" crossorigin>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Store","name":"Zahara Perfumes Árabes","url":"https://www.zaharacg.com.br/",
+ "description":"Perfumes árabes originais com entrega no mesmo dia em Campo Grande/MS.",
+ "areaServed":{"@type":"City","name":"Campo Grande","containedInPlace":{"@type":"State","name":"Mato Grosso do Sul"}},
+ "address":{"@type":"PostalAddress","addressLocality":"Campo Grande","addressRegion":"MS","addressCountry":"BR"},
+ "sameAs":["https://instagram.com/zahara.cg"],"telephone":"+55 67 99289-0249","priceRange":"R$129–R$370"}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -259,6 +278,16 @@
     footer{padding-bottom:18px}
   }
 
+  /* ===== EXTRAS: WhatsApp fixo, foco, esgotado ===== */
+  .wpp-fab{position:fixed;bottom:22px;right:22px;z-index:39;display:flex;align-items:center;gap:10px;background:var(--verde-wpp);color:#053b1a;text-decoration:none;border-radius:50px;padding:14px 20px;font-weight:600;font-size:.92rem;letter-spacing:.03em;box-shadow:0 14px 34px -10px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.12) inset;transition:transform .2s,opacity .2s}
+  .wpp-fab:active{transform:scale(.96)}
+  .wpp-fab.hidden{opacity:0;pointer-events:none;transform:translateY(20px)}
+  .add.soldout{pointer-events:auto;cursor:pointer;text-decoration:none;display:block;text-align:center}
+  a.add.soldout{color:var(--ouro-claro);border-color:var(--ouro-soft)}
+  :focus-visible{outline:2px solid var(--ouro-claro);outline-offset:2px}
+  .chip:focus-visible,.add:focus-visible,.checkout:focus-visible{outline-offset:3px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  @media (max-width:520px){.wpp-fab{left:14px;right:14px;bottom:14px;justify-content:center;border-radius:18px}}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}.spin{animation-duration:0s}}
 </style>
 </head>
@@ -266,21 +295,28 @@
 
 <header>
   <div class="ornament"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
-  <div class="hero-kicker">Pronta entrega em Campo Grande/MS</div>
+  <div class="hero-kicker">Entrega hoje em Campo Grande/MS</div>
   <h1 class="brand">Zahara</h1>
   <div class="brand-sub">Perfumes Árabes</div>
 
   <section class="hero-card" aria-label="Apresentação da Zahara Perfumes Árabes">
-    <span class="hero-pill">Catálogo premium</span>
-    <h2 class="hero-title">Perfumes originais <strong>à pronta entrega</strong></h2>
+    <span class="hero-pill">Originais · lacrados · pronta entrega</span>
+    <h2 class="hero-title">Perfumes árabes originais <strong>na sua casa hoje</strong></h2>
     <p class="hero-copy">
-      Fragrâncias árabes originais, selecionadas para quem busca presença, sofisticação e alta performance.
-      Escolha seus perfumes no catálogo e finalize o pedido pelo WhatsApp.
+      Lattafa, Armaf, Maison Alhambra e mais, à pronta entrega em Campo Grande.
+      Escolha no catálogo, chame no WhatsApp e receba no mesmo dia, ou retire e confira o perfume antes de pagar.
     </p>
+    <div class="hero-actions">
+      <a class="hero-btn primary" id="heroWpp" href="#" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.2 1.3-1.7 1.3-.4 0-1 .1-1.6-.1-1.6-.6-3.7-2.5-4.9-4.5-.3-.5-.8-1.4-.8-2.6 0-1.2.6-1.8.9-2 .2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.7 1.7c0 .2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.5.9 1 1.4 1.8 1.9.3.2.5.2.7-.1l.5-.6c.2-.2.3-.2.6-.1l1.6.8c.2.1.4.2.5.3 0 .2 0 .9-.3 1.5z"/></svg>
+        Pedir pelo WhatsApp
+      </a>
+      <a class="hero-btn secondary" href="#catalogo">Ver catálogo</a>
+    </div>
     <div class="trust-row" aria-label="Diferenciais">
-      <div class="trust-item"><b>CG/MS</b>Retirada e entrega</div>
-      <div class="trust-item"><b>100%</b>Originais</div>
-      <div class="trust-item"><b>Hoje</b>Pronta entrega</div>
+      <div class="trust-item"><b>Hoje</b>Entrega no mesmo dia</div>
+      <div class="trust-item"><b>100%</b>Originais lacrados</div>
+      <div class="trust-item"><b>CG/MS</b>Retirada ou entrega</div>
     </div>
   </section>
 </header>
@@ -294,20 +330,20 @@
   <div class="mode-note" id="modeNote">Preço unitário para compras avulsas.</div>
 </div>
 
-<section class="catalog-head">
+<section class="catalog-head" id="catalogo">
   <div class="catalog-eyebrow">Escolha seu próximo perfume</div>
   <h2 class="catalog-title">Vitrine Zahara</h2>
-  <p class="catalog-copy">Busque por marca, escolha varejo ou atacado, adicione os perfumes ao pedido e finalize tudo no WhatsApp ao final.</p>
+  <p class="catalog-copy">Busque por marca ou categoria, escolha varejo ou atacado (4 unidades ou mais), adicione ao pedido e finalize no WhatsApp.</p>
 </section>
 
 
 <div class="controls">
-  <div class="filter-label">Categorias</div>
-  <div class="categories" id="categories"></div>
+  <div class="filter-label" id="categoriesLabel" hidden>Categorias</div>
+  <div class="categories" id="categories" hidden></div>
 
   <div class="search">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-    <input id="search" type="text" placeholder="Buscar por marca ou perfume…" autocomplete="off">
+    <label class="sr-only" for="search">Buscar perfume</label><input id="search" type="search" placeholder="Buscar por marca ou perfume…" autocomplete="off">
   </div>
   <div class="filter-label">Marcas</div>
   <div class="brands" id="brands"></div>
@@ -319,20 +355,25 @@
 </main>
 
 <footer>
-  Zahara Perfumes Árabes · Campo Grande/MS · <a href="https://instagram.com/zahara.cg" target="_blank" rel="noopener">@zahara.cg</a><br>
-  Perfumes originais à pronta entrega em Campo Grande, MS
+  Zahara Perfumes Árabes · Campo Grande/MS · <a href="https://instagram.com/zahara.cg" target="_blank" rel="noopener">@zahara.cg</a> · <a id="footWpp" href="#" target="_blank" rel="noopener">WhatsApp</a><br>
+  Perfumes árabes originais com entrega no mesmo dia em Campo Grande, MS
 </footer>
 
-<button class="cart-fab hidden" id="cartFab">
+<a class="wpp-fab" id="wppFab" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.2 1.3-1.7 1.3-.4 0-1 .1-1.6-.1-1.6-.6-3.7-2.5-4.9-4.5-.3-.5-.8-1.4-.8-2.6 0-1.2.6-1.8.9-2 .2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.7 1.7c0 .2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.5.9 1 1.4 1.8 1.9.3.2.5.2.7-.1l.5-.6c.2-.2.3-.2.6-.1l1.6.8c.2.1.4.2.5.3 0 .2 0 .9-.3 1.5z"/></svg>
+  <span>Falar no WhatsApp</span>
+</a>
+
+<button class="cart-fab hidden" id="cartFab" aria-label="Abrir meu pedido">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
   <span>Meu pedido</span><span class="qty" id="fabQty">0</span>
 </button>
 
 <div class="overlay" id="overlay"></div>
-<aside class="drawer" id="drawer">
+<aside class="drawer" id="drawer" role="dialog" aria-label="Meu pedido" aria-modal="true">
   <div class="drawer-head">
     <div><h2>Meu pedido</h2><div class="drawer-mode" id="drawerMode">Varejo</div></div>
-    <button class="x" id="closeCart">×</button>
+    <button class="x" id="closeCart" aria-label="Fechar">×</button>
   </div>
   <div class="cart-items" id="cartItems"></div>
   <div class="drawer-foot">
@@ -351,6 +392,31 @@
 /* ---- CONFIG DA LOJA ---- */
 const WHATSAPP = "5567992890249";
 const MIN_ATACADO = 4;
+const META_PIXEL_ID = "";   // cole aqui o ID do Pixel do Meta (só números). Vazio = pixel desligado.
+const SAUDACAO = "Olá! Vim pelo site da Zahara e quero saber mais sobre os perfumes.";
+
+/* ---- ORIGEM DO TRÁFEGO (UTM) ----
+   Links de anúncio no formato ?utm_source=meta&utm_campaign=NOME&utm_content=CRIATIVO
+   chegam até a mensagem do WhatsApp, então você sabe de qual anúncio veio cada pedido. */
+const URLP = new URLSearchParams(location.search);
+const UTM = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"]
+  .map(k=>[k,URLP.get(k)]).filter(([,v])=>v);
+function origemTag(){
+  if(!UTM.length) return "";
+  const c=Object.fromEntries(UTM);
+  return `%0A%0A_Origem: ${encodeURIComponent([c.utm_source,c.utm_campaign,c.utm_content].filter(Boolean).join(" / "))}_`;
+}
+function waLink(texto){ return `https://wa.me/${WHATSAPP}?text=${texto}${origemTag()}`; }
+
+/* ---- META PIXEL ---- */
+if(META_PIXEL_ID){
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+  s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', META_PIXEL_ID); fbq('track','PageView');
+}
+function track(ev,data){ if(window.fbq) try{ fbq('track',ev,data||{}); }catch(e){} }
+function trackCustom(ev,data){ if(window.fbq) try{ fbq('trackCustom',ev,data||{}); }catch(e){} }
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -385,6 +451,7 @@ async function carregar(){
       img:r.img_url||""
     }));
     renderCategories(); renderBrands(); renderGrid();
+    aplicarDeepLink();
   }catch(e){
     document.getElementById("grid").innerHTML =
       `<div class="empty"><span>Não foi possível carregar</span>Verifique a conexão e recarregue a página.</div>`;
@@ -394,6 +461,10 @@ async function carregar(){
 
 function categoryList(){return ["Todos","Masculino","Feminino"];}
 function renderCategories(){
+  const temGenero=PRODUTOS.some(p=>p.gender);
+  document.getElementById("categoriesLabel").hidden=!temGenero;
+  document.getElementById("categories").hidden=!temGenero;
+  if(!temGenero){activeCategory="Todos";return;}
   const el=document.getElementById("categories");
   el.innerHTML=categoryList().map(c=>`<button class="chip ${c===activeCategory?'active':''}" data-category="${c}">${c}</button>`).join("");
   el.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{activeCategory=c.dataset.category;renderCategories();renderGrid();});
@@ -426,7 +497,7 @@ function renderGrid(){
   if(!list.length){grid.innerHTML=`<div class="empty"><span>Nada encontrado</span>Tente outra marca ou termo de busca.</div>`;return;}
   grid.innerHTML=list.map(p=>{
     const k=key(p),inCart=cart[k],showOld=mode==="atacado"&&p.varejo>p.atacado,isSoldOut=!!p.soldOut;
-    const thumb=p.img?`<img src="${p.img}" alt="${p.name}" loading="lazy">`:`<div class="ph">${p.brand[0]||'Z'}<small>${p.brand}</small></div>`;
+    const thumb=p.img?`<img src="${p.img}" alt="${p.brand} ${p.name}" loading="lazy" decoding="async">`:`<div class="ph">${p.brand[0]||'Z'}<small>${p.brand}</small></div>`;
     const family=p.family?`<div class="meta-item"><b>Família olfativa</b>${p.family}</div>`:'';
     const mainNotes=p.mainNotes?`<div class="meta-item"><b>Notas principais</b>${p.mainNotes}</div>`:'';
     const usage=p.usage?`<div class="usage-badge">Uso: ${p.usage}</div>`:'';
@@ -438,11 +509,15 @@ function renderGrid(){
       <div class="info"><div class="p-brand">${p.brand}</div><div class="p-name">${p.name}</div>
       <div class="p-notes">${p.notes||''}</div>${(family||mainNotes)?`<div class="p-meta">${family}${mainNotes}</div>`:''}${usage}${p.size?`<div class="p-size">${p.size}</div>`:''}${stockNote}
       <div class="price-row"><div class="price">${showOld?`<span class="old">${fmt(p.varejo)}</span>`:''}${fmt(price(p))} <small>/un.</small></div></div>
-      <button class="add ${isSoldOut?'soldout':(inCart?'in':'')}" data-key="${k}" ${isSoldOut?'disabled aria-disabled="true"':''}>${isSoldOut?'Esgotado':(inCart?`No pedido (${inCart.qty})`:'Adicionar')}</button></div></article>`;
+      ${isSoldOut
+        ?`<a class="add soldout" href="${waLink(encodeURIComponent(`Olá! Quero saber quando o ${p.brand} — ${p.name} volta ao estoque.`))}" target="_blank" rel="noopener" data-avisar="${k}">Avisar quando chegar</a>`
+        :`<button class="add ${inCart?'in':''}" data-key="${k}">${inCart?`No pedido (${inCart.qty})`:'Adicionar'}</button>`}</div></article>`;
   }).join("");
-  grid.querySelectorAll(".add").forEach(b=>b.onclick=()=>addToCart(b.dataset.key));
+  grid.querySelectorAll("button.add").forEach(b=>b.onclick=()=>addToCart(b.dataset.key));
+  grid.querySelectorAll("[data-avisar]").forEach(a=>a.onclick=()=>trackCustom("AvisarEstoque",{content_name:a.dataset.avisar}));
 }
-function addToCart(k){const p=PRODUTOS.find(x=>key(x)===k);if(!p||p.soldOut)return;if(cart[k])cart[k].qty++;else cart[k]={prod:p,qty:1};syncCart();renderGrid();}
+function addToCart(k){const p=PRODUTOS.find(x=>key(x)===k);if(!p||p.soldOut)return;if(cart[k])cart[k].qty++;else cart[k]={prod:p,qty:1};
+  track("AddToCart",{content_name:`${p.brand} ${p.name}`,content_type:"product",value:price(p),currency:"BRL"});syncCart();renderGrid();}
 function changeQty(k,d){if(!cart[k])return;cart[k].qty+=d;if(cart[k].qty<=0)delete cart[k];syncCart();renderGrid();}
 function removeItem(k){delete cart[k];syncCart();renderGrid();}
 function totalQty(){return Object.values(cart).reduce((s,i)=>s+i.qty,0);}
@@ -451,6 +526,7 @@ function syncCart(){
   const qty=totalQty();
   document.getElementById("fabQty").textContent=qty;
   document.getElementById("cartFab").classList.toggle("hidden",qty===0&&!drawerOpen);
+  document.getElementById("wppFab").classList.toggle("hidden",!(qty===0&&!drawerOpen));
   document.getElementById("drawerMode").textContent=mode==="atacado"?"Atacado":"Varejo";
   const wrap=document.getElementById("cartItems"),items=Object.entries(cart);
   if(!items.length){wrap.innerHTML=`<div class="cart-empty"><span>Pedido vazio</span>Adicione perfumes para montar seu pedido.</div>`;}
@@ -467,7 +543,7 @@ function syncCart(){
   else{warn.style.display="none";checkout.disabled=qty===0;}
 }
 let drawerOpen=false;
-function openCart(){drawerOpen=true;document.getElementById("drawer").classList.add("open");document.getElementById("overlay").classList.add("open");syncCart();}
+function openCart(){drawerOpen=true;track("InitiateCheckout",{num_items:totalQty(),value:totalValue(),currency:"BRL"});document.getElementById("drawer").classList.add("open");document.getElementById("overlay").classList.add("open");syncCart();}
 function closeCart(){drawerOpen=false;document.getElementById("drawer").classList.remove("open");document.getElementById("overlay").classList.remove("open");syncCart();}
 document.getElementById("cartFab").onclick=openCart;
 document.getElementById("closeCart").onclick=closeCart;
@@ -481,8 +557,31 @@ document.getElementById("checkout").onclick=()=>{
     if(p.usage) msg+=`   Uso: ${p.usage}%0A`;
   });
   msg+=`%0A*Total: ${fmt(totalValue())}*%0A(${totalQty()} unidades)%0A%0AGostaria de fechar este pedido.`;
-  window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,"_blank");
+  track("Contact",{content_name:"pedido_whatsapp",value:totalValue(),currency:"BRL",num_items:totalQty()});
+  trackCustom("PedidoWhatsApp",{modalidade:mode,itens:totalQty(),valor:totalValue()});
+  window.open(waLink(msg),"_blank");
 };
+
+/* ---- LINKS DIRETOS DE WHATSAPP (herói, rodapé, botão fixo) ---- */
+(function(){
+  const href=waLink(encodeURIComponent(SAUDACAO));
+  ["heroWpp","footWpp","wppFab"].forEach(id=>{
+    const a=document.getElementById(id); if(!a) return;
+    a.href=href;
+    a.addEventListener("click",()=>{track("Contact",{content_name:id});trackCustom("CliqueWhatsApp",{origem:id});});
+  });
+})();
+
+/* ---- DEEP LINK: ?q=asad  ?marca=Lattafa  ?modo=atacado  ?cat=Feminino ----
+   Use em anúncios para abrir o catálogo já filtrado no produto do criativo. */
+function aplicarDeepLink(){
+  const q=URLP.get("q"), marca=URLP.get("marca"), modo=URLP.get("modo"), cat=URLP.get("cat");
+  if(modo==="atacado"){ const b=document.querySelector('#mode button[data-mode="atacado"]'); if(b) b.click(); }
+  if(marca){ const m=brandList().find(b=>b.toLowerCase()===marca.toLowerCase()); if(m){activeBrand=m;renderBrands();} }
+  if(cat){ const c=categoryList().find(x=>x.toLowerCase()===cat.toLowerCase()); if(c && !document.getElementById("categories").hidden){activeCategory=c;renderCategories();} }
+  if(q){ query=q; document.getElementById("search").value=q; }
+  if(q||marca||cat){ renderGrid(); document.getElementById("catalogo").scrollIntoView({behavior:"smooth",block:"start"}); }
+}
 document.getElementById("mode").querySelectorAll("button").forEach(btn=>{
   btn.onclick=()=>{mode=btn.dataset.mode;const m=document.getElementById("mode");
     m.classList.toggle("atacado",mode==="atacado");
