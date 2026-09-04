@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zahara Perfumes Árabes">
 <meta property="og:title" content="Zahara Perfumes Árabes — entrega hoje em Campo Grande">
-<meta property="og:description" content="Perfumes árabes originais à pronta entrega em Campo Grande/MS. Escolha no catálogo e finalize pelo WhatsApp.">
+<meta property="og:description" content="Perfumes árabes originais entregues no mesmo dia em Campo Grande/MS. Escolha no catálogo, confirme no WhatsApp e receba em casa.">
 <meta property="og:url" content="https://www.zaharacg.com.br/">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary">
@@ -304,8 +304,8 @@
     <span class="hero-pill">Originais · lacrados · pronta entrega</span>
     <h2 class="hero-title">Perfumes árabes originais <strong>na sua casa hoje</strong></h2>
     <p class="hero-copy">
-      Lattafa, Armaf, Maison Alhambra e mais, à pronta entrega em Campo Grande.
-      Escolha no catálogo, chame no WhatsApp e receba no mesmo dia, ou retire e confira o perfume antes de pagar.
+      Lattafa, Armaf, Maison Alhambra e mais, entregues na sua casa em Campo Grande.
+      Escolha no catálogo, confirme no WhatsApp, pague no Pix e receba no mesmo dia. Pedidos confirmados até as 15h saem hoje.
     </p>
     <div class="hero-actions">
       <a class="hero-btn primary" id="heroWpp" href="#" target="_blank" rel="noopener">
@@ -317,7 +317,7 @@
     <div class="trust-row" aria-label="Diferenciais">
       <div class="trust-item"><b>Hoje</b>Entrega no mesmo dia</div>
       <div class="trust-item"><b>100%</b>Originais lacrados</div>
-      <div class="trust-item"><b>CG/MS</b>Retirada ou entrega</div>
+      <div class="trust-item"><b>Pix</b>Pague e receba em casa</div>
     </div>
   </section>
 </header>
@@ -394,6 +394,7 @@
 const WHATSAPP = "5567992890249";
 const MIN_ATACADO = 4;
 const META_PIXEL_ID = "2200929484035544";   // ID do Pixel do Meta. Vazio = pixel desligado.
+const CAPI_ENDPOINT = "/api/meta-capi";      // API de Conversões (função na Vercel). Vazio = desligada.
 const SAUDACAO = "Olá! Vim pelo site da Zahara e quero saber mais sobre os perfumes.";
 
 /* ---- ORIGEM DO TRÁFEGO (UTM) ----
@@ -414,12 +415,28 @@ if(META_PIXEL_ID){
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
   s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', META_PIXEL_ID); fbq('track','PageView');
+  fbq('init', META_PIXEL_ID);
+  const pvId=`z-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+  fbq('track','PageView',{},{eventID:pvId});
+  window.__pvId=pvId;
 }
 const evId = ()=>`z-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
-function track(ev,data){ if(window.fbq) try{ fbq('track',ev,data||{},{eventID:evId()}); }catch(e){} }
-function trackCustom(ev,data){ if(window.fbq) try{ fbq('trackCustom',ev,data||{},{eventID:evId()}); }catch(e){} }
+function cookie(n){ const m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)')); return m?decodeURIComponent(m[1]):""; }
+/* Envia o mesmo evento (mesmo event_id) para a API de Conversões; o Meta deduplica com o Pixel. */
+function capi(ev,data,id){
+  if(!CAPI_ENDPOINT||!META_PIXEL_ID) return;
+  try{
+    const body=JSON.stringify({event_name:ev,event_id:id,event_time:Math.floor(Date.now()/1000),
+      event_source_url:location.href,fbp:cookie("_fbp"),fbc:cookie("_fbc"),custom_data:data||{}});
+    // sendBeacon sobrevive ao clique que abre o WhatsApp em outra aba
+    if(navigator.sendBeacon && navigator.sendBeacon(CAPI_ENDPOINT,new Blob([body],{type:"application/json"}))) return;
+    fetch(CAPI_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body,keepalive:true}).catch(()=>{});
+  }catch(e){}
+}
+function track(ev,data){ const id=evId(); if(window.fbq) try{ fbq('track',ev,data||{},{eventID:id}); }catch(e){} capi(ev,data,id); }
+function trackCustom(ev,data){ const id=evId(); if(window.fbq) try{ fbq('trackCustom',ev,data||{},{eventID:id}); }catch(e){} capi(ev,data,id); }
 function utmData(){ return Object.fromEntries(UTM); }
+if(window.__pvId) capi("PageView",utmData(),window.__pvId);
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
