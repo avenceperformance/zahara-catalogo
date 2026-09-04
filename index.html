@@ -1,23 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2200929484035544');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2200929484035544&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="only light">
@@ -27,7 +10,7 @@ src="https://www.facebook.com/tr?id=2200929484035544&ev=PageView&noscript=1"
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --vinho-1:#2B0608;--vinho-2:#4A0E14;--vinho-3:#3A0B11;
+    --vinho-1:#260306;--vinho-2:#7A111D;--vinho-3:#4D0710;
     --ouro:#CBA135;--ouro-claro:#E8C874;--ouro-soft:rgba(203,161,53,.35);
     --creme:#F0E6D2;--creme-dim:rgba(240,230,210,.62);--verde-wpp:#25D366;
     --shadow:0 18px 50px -20px rgba(0,0,0,.7);
@@ -35,7 +18,7 @@ src="https://www.facebook.com/tr?id=2200929484035544&ev=PageView&noscript=1"
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:'Jost',sans-serif;color:var(--creme);
-    background:radial-gradient(120% 90% at 50% -10%, #5C1119 0%, var(--vinho-2) 38%, var(--vinho-1) 100%);
+    background:radial-gradient(120% 90% at 50% -10%, #9B1828 0%, var(--vinho-2) 36%, var(--vinho-3) 66%, var(--vinho-1) 100%);
     background-attachment:fixed;min-height:100vh;-webkit-font-smoothing:antialiased;padding-bottom:120px;}
   ::selection{background:var(--ouro);color:var(--vinho-1)}
   header{text-align:center;padding:38px 20px 24px;position:relative}
@@ -60,23 +43,34 @@ src="https://www.facebook.com/tr?id=2200929484035544&ev=PageView&noscript=1"
   .search input{width:100%;font-family:'Jost';font-size:1rem;color:var(--creme);background:rgba(0,0,0,.25);border:1px solid var(--ouro-soft);border-radius:50px;padding:15px 20px 15px 48px;outline:none;transition:border-color .25s,box-shadow .25s}
   .search input::placeholder{color:var(--creme-dim)}
   .search input:focus{border-color:var(--ouro);box-shadow:0 0 0 3px rgba(203,161,53,.15)}
-  .brands{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+  .brands{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+  .filter-label{text-align:center;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ouro);font-weight:700;margin:18px 0 9px}
+  .categories{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin:0 auto 12px}
   .chip{font-family:'Jost';cursor:pointer;font-size:.84rem;letter-spacing:.03em;background:transparent;color:var(--creme-dim);border:1px solid var(--ouro-soft);border-radius:50px;padding:8px 16px;transition:all .22s;white-space:nowrap}
   .chip:hover{color:var(--creme);border-color:var(--ouro)}
   .chip.active{background:linear-gradient(180deg,var(--ouro-claro),var(--ouro));color:var(--vinho-1);border-color:transparent;font-weight:600;box-shadow:0 6px 14px -6px var(--ouro)}
   .count{text-align:center;font-size:.78rem;color:var(--creme-dim);letter-spacing:.08em;margin:26px 0 4px;text-transform:uppercase}
   .grid{max-width:1080px;margin:14px auto 0;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
-  .card{background:linear-gradient(180deg,rgba(92,17,25,.55),var(--vinho-3));border:1px solid var(--ouro-soft);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative}
+  .card{background:linear-gradient(180deg,rgba(122,17,29,.64),var(--vinho-3));border:1px solid var(--ouro-soft);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative}
   .card:hover{transform:translateY(-4px);border-color:var(--ouro);box-shadow:var(--shadow)}
-  .thumb{aspect-ratio:1/1;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 35%,#5C1119,#2B0608);display:flex;align-items:center;justify-content:center}
+  .thumb{aspect-ratio:1/1;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 35%,#8A1422,#260306);display:flex;align-items:center;justify-content:center}
   .thumb img{width:100%;height:100%;object-fit:cover}
   .thumb .ph{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;color:var(--ouro);opacity:.55;text-align:center}
   .thumb .ph small{display:block;font-family:'Jost';font-size:.5rem;letter-spacing:.3em;opacity:.7;margin-top:-4px;text-transform:uppercase}
   .badge{position:absolute;top:10px;left:10px;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;background:rgba(0,0,0,.5);color:var(--ouro-claro);padding:5px 10px;border-radius:50px;border:1px solid var(--ouro-soft);backdrop-filter:blur(4px)}
+  .badge.out{background:rgba(0,0,0,.72);color:#fff;border-color:rgba(255,255,255,.24)}
+  .card.soldout .thumb img{filter:grayscale(.35) brightness(.72)}
+  .card.soldout .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.45));pointer-events:none}
+  .stock-note{margin-top:10px;color:#fff;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:9px 10px;font-size:.72rem;line-height:1.35}
+
   .info{padding:15px 15px 16px;display:flex;flex-direction:column;flex:1}
   .p-brand{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ouro);margin-bottom:4px}
   .p-name{font-family:'Cormorant Garamond',serif;font-size:1.34rem;font-weight:600;line-height:1.1;color:var(--creme)}
   .p-notes{font-size:.76rem;color:var(--creme-dim);margin-top:6px;line-height:1.45;flex:1}
+  .p-meta{display:grid;gap:6px;margin-top:10px}
+  .meta-item{background:rgba(0,0,0,.18);border:1px solid rgba(203,161,53,.16);border-radius:12px;padding:8px 9px;color:rgba(240,230,210,.78);font-size:.70rem;line-height:1.35}
+  .meta-item b{display:block;color:var(--ouro-claro);font-size:.57rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px;font-weight:700}
+  .usage-badge{display:inline-flex;align-items:center;gap:6px;width:max-content;margin-top:8px;border:1px solid rgba(232,200,116,.34);border-radius:999px;padding:6px 9px;background:rgba(0,0,0,.20);color:var(--ouro-claro);font-size:.63rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
   .p-size{font-size:.7rem;color:var(--creme-dim);margin-top:8px;letter-spacing:.05em}
   .price-row{display:flex;align-items:baseline;justify-content:space-between;margin-top:12px;gap:8px}
   .price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--ouro-claro);white-space:nowrap}
@@ -86,6 +80,8 @@ src="https://www.facebook.com/tr?id=2200929484035544&ev=PageView&noscript=1"
   .add:hover{filter:brightness(1.08)}
   .add:active{transform:scale(.97)}
   .add.in{background:rgba(0,0,0,.3);color:var(--ouro-claro);border:1px solid var(--ouro)}
+  .add.soldout,.add:disabled{background:rgba(255,255,255,.10);color:rgba(240,230,210,.55);border:1px solid rgba(255,255,255,.16);cursor:not-allowed;filter:none}
+
   .empty{text-align:center;color:var(--creme-dim);padding:60px 20px;font-size:1rem;grid-column:1/-1}
   .empty span{font-family:'Cormorant Garamond',serif;font-size:1.4rem;display:block;color:var(--ouro);margin-bottom:6px}
   .loader{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:16px;padding:60px 20px;color:var(--creme-dim)}
@@ -105,7 +101,7 @@ src="https://www.facebook.com/tr?id=2200929484035544&ev=PageView&noscript=1"
   .drawer-mode{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ouro);margin-top:2px}
   .cart-items{flex:1;overflow-y:auto;padding:8px 22px}
   .ci{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid rgba(203,161,53,.15)}
-  .ci-thumb{width:54px;height:54px;border-radius:12px;flex-shrink:0;background:radial-gradient(circle,#5C1119,#2B0608);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;color:var(--ouro);font-weight:700;overflow:hidden}
+  .ci-thumb{width:54px;height:54px;border-radius:12px;flex-shrink:0;background:radial-gradient(circle,#8A1422,#260306);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;color:var(--ouro);font-weight:700;overflow:hidden}
   .ci-thumb img{width:100%;height:100%;object-fit:cover}
   .ci-info{flex:1;min-width:0}
   .ci-brand{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ouro)}
@@ -129,7 +125,140 @@ src="https://www.facebook.com/tr?id=2200929484035544&ev=PageView&noscript=1"
   .checkout:disabled{background:rgba(255,255,255,.12);color:var(--creme-dim);cursor:not-allowed}
   footer{text-align:center;padding:30px 20px 10px;color:var(--creme-dim);font-size:.76rem;letter-spacing:.05em}
   footer a{color:var(--ouro);text-decoration:none}
+
+  /* ===== ZAHARA WOW MOBILE UPGRADE ===== */
+  body{position:relative;isolation:isolate;overflow-x:hidden}
+  body::before{
+    content:"";position:fixed;inset:-20%;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(232,200,116,.25), transparent 22%),
+      radial-gradient(circle at 88% 18%, rgba(203,161,53,.16), transparent 26%),
+      radial-gradient(circle at 50% 92%, rgba(155,24,40,.35), transparent 34%);
+    filter:blur(4px);
+    animation:aurora 10s ease-in-out infinite alternate;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.15;
+    background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+    background-size:42px 42px;
+    mask-image:linear-gradient(to bottom, black, transparent 70%);
+  }
+  @keyframes aurora{from{transform:translate3d(-1%,0,0) scale(1)}to{transform:translate3d(1.5%,-1%,0) scale(1.04)}}
+
+  header{padding:30px 18px 26px;overflow:hidden}
+  header::before{
+    content:"";position:absolute;left:50%;top:12px;transform:translateX(-50%);
+    width:min(520px,92vw);height:220px;border-radius:999px;
+    background:radial-gradient(closest-side, rgba(232,200,116,.18), transparent 72%);
+    filter:blur(8px);pointer-events:none;
+  }
+  .hero-kicker{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;
+    color:var(--ouro-claro);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    background:rgba(0,0,0,.22);border:1px solid var(--ouro-soft);border-radius:999px;padding:8px 12px;
+    backdrop-filter:blur(12px);position:relative;
+  }
+  .hero-kicker::before,.hero-kicker::after{content:"";width:5px;height:5px;border-radius:99px;background:var(--ouro)}
+  .brand{filter:drop-shadow(0 12px 28px rgba(0,0,0,.28))}
+  .hero-card{
+    max-width:760px;margin:22px auto 0;padding:22px 18px 18px;border-radius:26px;position:relative;overflow:hidden;
+    background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(122,17,29,.28) 42%,rgba(0,0,0,.24));
+    border:1px solid rgba(232,200,116,.38);
+    box-shadow:0 26px 90px -42px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.13);
+    backdrop-filter:blur(18px);
+  }
+  .hero-card::before{
+    content:"";position:absolute;inset:-2px;background:linear-gradient(120deg,transparent 8%,rgba(232,200,116,.26),transparent 34%);
+    transform:translateX(-105%);animation:shine 5.2s ease-in-out infinite;pointer-events:none;
+  }
+  @keyframes shine{0%,55%{transform:translateX(-110%)}78%,100%{transform:translateX(110%)}}
+  .hero-pill{
+    display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--vinho-1);
+    background:linear-gradient(180deg,var(--ouro-claro),var(--ouro));border-radius:999px;padding:7px 12px;
+    font-size:.67rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    box-shadow:0 10px 25px -16px var(--ouro);
+  }
+  .hero-title{
+    font-family:'Cormorant Garamond',serif;font-weight:700;line-height:.96;
+    font-size:clamp(2rem,8.8vw,4.2rem);letter-spacing:-.03em;color:var(--creme);
+    text-shadow:0 10px 28px rgba(0,0,0,.32);
+  }
+  .hero-title strong{
+    display:block;background:linear-gradient(180deg,var(--ouro-claro),var(--ouro));-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero-copy{
+    max-width:610px;margin:12px auto 0;color:rgba(240,230,210,.78);font-size:clamp(.92rem,3.5vw,1.08rem);line-height:1.55;
+  }
+  .hero-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .hero-btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:0 18px;border-radius:999px;
+    font-weight:700;font-size:.88rem;letter-spacing:.03em;text-decoration:none;transition:transform .18s,filter .18s,border-color .18s;
+  }
+  .hero-btn.primary{background:var(--verde-wpp);color:#053b1a;box-shadow:0 18px 36px -20px var(--verde-wpp)}
+  .hero-btn.secondary{border:1px solid var(--ouro-soft);color:var(--creme);background:rgba(0,0,0,.20)}
+  .hero-btn:active{transform:scale(.97)}
+  .trust-row{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:20px auto 0;max-width:680px;
+  }
+  .trust-item{
+    padding:10px 8px;border-radius:16px;background:rgba(0,0,0,.19);border:1px solid rgba(203,161,53,.20);
+    color:var(--creme-dim);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;line-height:1.25;
+  }
+  .trust-item b{display:block;color:var(--ouro-claro);font-family:'Cormorant Garamond',serif;font-size:1.2rem;letter-spacing:0;text-transform:none;line-height:1}
+  .catalog-head{max-width:920px;margin:26px auto 0;padding:0 20px;text-align:center}
+  .catalog-eyebrow{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ouro);font-weight:700}
+  .catalog-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,7vw,2.8rem);font-weight:700;margin-top:4px;color:var(--creme)}
+  .catalog-copy{max-width:610px;margin:6px auto 0;color:var(--creme-dim);font-size:.94rem;line-height:1.5}
+  .card{box-shadow:0 16px 48px -34px rgba(0,0,0,.95)}
+  .card::before{
+    content:"";position:absolute;inset:0;pointer-events:none;border-radius:18px;
+    background:linear-gradient(140deg,rgba(255,255,255,.08),transparent 36%);
+    opacity:.65;
+  }
+  .thumb::after{
+    content:"";position:absolute;inset:auto 12% 0;height:38%;
+    background:radial-gradient(closest-side,rgba(232,200,116,.18),transparent 70%);
+    filter:blur(14px);pointer-events:none;
+  }
+  .p-name{letter-spacing:-.02em}
+  .add{box-shadow:0 12px 24px -18px var(--ouro)}
+
   @media (max-width:520px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}.info{padding:12px}.p-name{font-size:1.15rem}.price{font-size:1.3rem}.add{padding:10px;font-size:.78rem}.cart-fab{padding:13px 18px;font-size:.86rem}}
+
+  @media (max-width:520px){
+    body{padding-bottom:104px}
+    header{padding-top:22px}
+    .ornament{margin-bottom:12px;max-width:270px}
+    .brand-sub{font-size:.62rem;letter-spacing:.34em}
+    .hero-card{margin-top:18px;padding:20px 14px 15px;border-radius:24px}
+    .hero-title{font-size:clamp(2.05rem,12vw,3.2rem)}
+    .hero-copy{font-size:.92rem}
+    .trust-row{grid-template-columns:1fr 1fr 1fr;gap:6px}
+    .trust-item{font-size:.56rem;padding:9px 5px;border-radius:13px}
+    .trust-item b{font-size:1rem}
+    .mode-wrap{margin-top:22px}
+    .controls{margin-top:16px}
+    .search input{padding-top:14px;padding-bottom:14px}
+    .brands{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:none}
+    .brands::-webkit-scrollbar{display:none}
+    .chip{flex:0 0 auto}
+    .grid{grid-template-columns:repeat(2, minmax(0,1fr));gap:12px;padding:0 14px}
+    .card{border-radius:20px}
+    .thumb{aspect-ratio:1/1.08}
+    .info{padding:12px 10px 11px}
+    .p-brand{font-size:.55rem;letter-spacing:.16em}
+    .p-name{font-size:1.13rem}
+    .p-notes{font-size:.70rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .meta-item{font-size:.63rem;padding:7px 8px;border-radius:10px}
+    .meta-item b{font-size:.50rem}
+    .usage-badge{font-size:.55rem;padding:5px 8px}
+    .price{font-size:1.32rem}
+    .add{min-height:38px}
+    .cart-fab{left:14px;right:14px;bottom:14px;justify-content:center;border-radius:18px}
+    .drawer{width:100%}
+    footer{padding-bottom:18px}
+  }
+
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}.spin{animation-duration:0s}}
 </style>
 </head>
@@ -137,8 +266,23 @@ src="https://www.facebook.com/tr?id=2200929484035544&ev=PageView&noscript=1"
 
 <header>
   <div class="ornament"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+  <div class="hero-kicker">Pronta entrega em Campo Grande/MS</div>
   <h1 class="brand">Zahara</h1>
   <div class="brand-sub">Perfumes Árabes</div>
+
+  <section class="hero-card" aria-label="Apresentação da Zahara Perfumes Árabes">
+    <span class="hero-pill">Catálogo premium</span>
+    <h2 class="hero-title">Perfumes originais <strong>à pronta entrega</strong></h2>
+    <p class="hero-copy">
+      Fragrâncias árabes originais, selecionadas para quem busca presença, sofisticação e alta performance.
+      Escolha seus perfumes no catálogo e finalize o pedido pelo WhatsApp.
+    </p>
+    <div class="trust-row" aria-label="Diferenciais">
+      <div class="trust-item"><b>CG/MS</b>Retirada e entrega</div>
+      <div class="trust-item"><b>100%</b>Originais</div>
+      <div class="trust-item"><b>Hoje</b>Pronta entrega</div>
+    </div>
+  </section>
 </header>
 
 <div class="mode-wrap">
@@ -150,11 +294,22 @@ src="https://www.facebook.com/tr?id=2200929484035544&ev=PageView&noscript=1"
   <div class="mode-note" id="modeNote">Preço unitário para compras avulsas.</div>
 </div>
 
+<section class="catalog-head">
+  <div class="catalog-eyebrow">Escolha seu próximo perfume</div>
+  <h2 class="catalog-title">Vitrine Zahara</h2>
+  <p class="catalog-copy">Busque por marca, escolha varejo ou atacado, adicione os perfumes ao pedido e finalize tudo no WhatsApp ao final.</p>
+</section>
+
+
 <div class="controls">
+  <div class="filter-label">Categorias</div>
+  <div class="categories" id="categories"></div>
+
   <div class="search">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
     <input id="search" type="text" placeholder="Buscar por marca ou perfume…" autocomplete="off">
   </div>
+  <div class="filter-label">Marcas</div>
   <div class="brands" id="brands"></div>
 </div>
 
@@ -165,7 +320,7 @@ src="https://www.facebook.com/tr?id=2200929484035544&ev=PageView&noscript=1"
 
 <footer>
   Zahara Perfumes Árabes · Campo Grande/MS · <a href="https://instagram.com/zahara.cg" target="_blank" rel="noopener">@zahara.cg</a><br>
-  Originais e inspirados · Pronta entrega
+  Perfumes originais à pronta entrega em Campo Grande, MS
 </footer>
 
 <button class="cart-fab hidden" id="cartFab">
@@ -200,7 +355,7 @@ const MIN_ATACADO = 4;
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 let PRODUTOS = [];
-let mode = "varejo", activeBrand = "Todas", query = "";
+let mode = "varejo", activeBrand = "Todas", activeCategory = "Todos", query = "";
 const cart = {};
 
 const fmt = n => "R$ " + Number(n).toLocaleString("pt-BR",{minimumFractionDigits:0,maximumFractionDigits:2});
@@ -220,15 +375,28 @@ async function carregar(){
     if(error) throw error;
     PRODUTOS = (data||[]).map(r=>({
       brand:r.marca, name:r.nome, size:r.tamanho||"",
-      notes:r.notas||"", varejo:Number(r.preco_varejo), atacado:Number(r.preco_atacado),
+      notes:r.notas||"",
+      family:r.familia_olfativa||"",
+      mainNotes:r.notas_principais||r.notas||"",
+      usage:r.recomendacao_uso||"",
+      gender:r.genero||"",
+      soldOut:!!r.esgotado,
+      varejo:Number(r.preco_varejo), atacado:Number(r.preco_atacado),
       img:r.img_url||""
     }));
-    renderBrands(); renderGrid();
+    renderCategories(); renderBrands(); renderGrid();
   }catch(e){
     document.getElementById("grid").innerHTML =
       `<div class="empty"><span>Não foi possível carregar</span>Verifique a conexão e recarregue a página.</div>`;
     console.error(e);
   }
+}
+
+function categoryList(){return ["Todos","Masculino","Feminino"];}
+function renderCategories(){
+  const el=document.getElementById("categories");
+  el.innerHTML=categoryList().map(c=>`<button class="chip ${c===activeCategory?'active':''}" data-category="${c}">${c}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{activeCategory=c.dataset.category;renderCategories();renderGrid();});
 }
 
 function brandList(){
@@ -243,9 +411,11 @@ function renderBrands(){
 function filtered(){
   return PRODUTOS.filter(p=>{
     const okBrand=activeBrand==="Todas"||p.brand===activeBrand;
+    const okCategory=activeCategory==="Todos"||(p.gender||"").toLowerCase().includes(activeCategory.toLowerCase());
     const q=query.trim().toLowerCase();
-    const okQuery=!q||(p.brand+" "+p.name+" "+(p.notes||"")).toLowerCase().includes(q);
-    return okBrand&&okQuery;
+    const searchText=[p.brand,p.name,p.notes,p.family,p.mainNotes,p.usage,p.gender].join(" ").toLowerCase();
+    const okQuery=!q||searchText.includes(q);
+    return okBrand&&okCategory&&okQuery;
   });
 }
 function renderGrid(){
@@ -255,17 +425,24 @@ function renderGrid(){
   if(!PRODUTOS.length){grid.innerHTML=`<div class="empty"><span>Catálogo em atualização</span>Em breve novos perfumes por aqui.</div>`;return;}
   if(!list.length){grid.innerHTML=`<div class="empty"><span>Nada encontrado</span>Tente outra marca ou termo de busca.</div>`;return;}
   grid.innerHTML=list.map(p=>{
-    const k=key(p),inCart=cart[k],showOld=mode==="atacado"&&p.varejo>p.atacado;
+    const k=key(p),inCart=cart[k],showOld=mode==="atacado"&&p.varejo>p.atacado,isSoldOut=!!p.soldOut;
     const thumb=p.img?`<img src="${p.img}" alt="${p.name}" loading="lazy">`:`<div class="ph">${p.brand[0]||'Z'}<small>${p.brand}</small></div>`;
-    return `<article class="card"><div class="thumb">${thumb}${mode==="atacado"?'<span class="badge">Atacado</span>':''}</div>
+    const family=p.family?`<div class="meta-item"><b>Família olfativa</b>${p.family}</div>`:'';
+    const mainNotes=p.mainNotes?`<div class="meta-item"><b>Notas principais</b>${p.mainNotes}</div>`:'';
+    const usage=p.usage?`<div class="usage-badge">Uso: ${p.usage}</div>`:'';
+    const genderBadge=p.gender?`<span class="badge">${p.gender}</span>`:'';
+    const statusBadge=isSoldOut?'<span class="badge out" style="left:auto;right:10px">Esgotado</span>':'';
+    const atacadoBadge=(!isSoldOut&&mode==="atacado")?'<span class="badge" style="left:auto;right:10px">Atacado</span>':'';
+    const stockNote=isSoldOut?'<div class="stock-note">Produto esgotado no momento. Você pode consultar disponibilidade pelo WhatsApp ao finalizar outros itens.</div>':'';
+    return `<article class="card ${isSoldOut?'soldout':''}"><div class="thumb">${thumb}${genderBadge}${statusBadge}${atacadoBadge}</div>
       <div class="info"><div class="p-brand">${p.brand}</div><div class="p-name">${p.name}</div>
-      <div class="p-notes">${p.notes||''}</div>${p.size?`<div class="p-size">${p.size}</div>`:''}
+      <div class="p-notes">${p.notes||''}</div>${(family||mainNotes)?`<div class="p-meta">${family}${mainNotes}</div>`:''}${usage}${p.size?`<div class="p-size">${p.size}</div>`:''}${stockNote}
       <div class="price-row"><div class="price">${showOld?`<span class="old">${fmt(p.varejo)}</span>`:''}${fmt(price(p))} <small>/un.</small></div></div>
-      <button class="add ${inCart?'in':''}" data-key="${k}">${inCart?`No pedido (${inCart.qty})`:'Adicionar'}</button></div></article>`;
+      <button class="add ${isSoldOut?'soldout':(inCart?'in':'')}" data-key="${k}" ${isSoldOut?'disabled aria-disabled="true"':''}>${isSoldOut?'Esgotado':(inCart?`No pedido (${inCart.qty})`:'Adicionar')}</button></div></article>`;
   }).join("");
   grid.querySelectorAll(".add").forEach(b=>b.onclick=()=>addToCart(b.dataset.key));
 }
-function addToCart(k){const p=PRODUTOS.find(x=>key(x)===k);if(!p)return;if(cart[k])cart[k].qty++;else cart[k]={prod:p,qty:1};syncCart();renderGrid();}
+function addToCart(k){const p=PRODUTOS.find(x=>key(x)===k);if(!p||p.soldOut)return;if(cart[k])cart[k].qty++;else cart[k]={prod:p,qty:1};syncCart();renderGrid();}
 function changeQty(k,d){if(!cart[k])return;cart[k].qty+=d;if(cart[k].qty<=0)delete cart[k];syncCart();renderGrid();}
 function removeItem(k){delete cart[k];syncCart();renderGrid();}
 function totalQty(){return Object.values(cart).reduce((s,i)=>s+i.qty,0);}
@@ -298,7 +475,11 @@ document.getElementById("overlay").onclick=closeCart;
 document.getElementById("checkout").onclick=()=>{
   const items=Object.values(cart);if(!items.length)return;
   let msg=`*Pedido — Zahara Perfumes Árabes*%0A_Modalidade: ${mode==="atacado"?"Atacado":"Varejo"}_%0A%0A`;
-  items.forEach(it=>{const p=it.prod;msg+=`• ${p.brand} — ${p.name}${p.size?` (${p.size})`:''}%0A   ${it.qty} un × ${fmt(price(p))} = ${fmt(price(p)*it.qty)}%0A`;});
+  items.forEach(it=>{const p=it.prod;msg+=`• ${p.brand} — ${p.name}${p.size?` (${p.size})`:''}%0A   ${it.qty} un × ${fmt(price(p))} = ${fmt(price(p)*it.qty)}%0A`;
+    if(p.family) msg+=`   Família: ${p.family}%0A`;
+    if(p.mainNotes) msg+=`   Notas: ${p.mainNotes}%0A`;
+    if(p.usage) msg+=`   Uso: ${p.usage}%0A`;
+  });
   msg+=`%0A*Total: ${fmt(totalValue())}*%0A(${totalQty()} unidades)%0A%0AGostaria de fechar este pedido.`;
   window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,"_blank");
 };
